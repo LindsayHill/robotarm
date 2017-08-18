@@ -1,0 +1,31 @@
+---
+chain:
+  - name: pivot
+    ref: robotarm.pivot
+    parameters:
+      location: "{{ pivot_location }}"
+    on-success: "grip"
+  - name: grip
+    ref: robotarm.grip
+    parameters:
+      location: "{{ grip_location }}"
+    on-success: "shoulder"
+  - name: shoulder
+    ref: robotarm.shoulder
+    parameters:
+      location: "{{ shoulder_location }}"
+    on-success: "wrist"
+  - name: wrist
+    ref: robotarm.wrist
+    parameters:
+      location: "{{ wrist_location }}"
+    on-success: "elbow"
+  - name: elbow
+    ref: robotarm.elbow
+    parameters:
+      location: "{{ elbow_location }}"
+    on-success: "hand"
+  - name: hand
+    ref: robotarm.hand
+    parameters:
+      location: "{{ hand_location }}"

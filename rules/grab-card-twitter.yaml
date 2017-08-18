@@ -1,0 +1,16 @@
+name: grab_card_twitter
+pack: robotarm
+description: Grab card on twitter
+enabled: true
+
+trigger:
+    type: twitter.stream_matched_tweet
+
+criteria:
+    trigger.text:
+        type: "matchregex"
+        pattern : "^(?=.*(?i)prize)(?=.*(?i)Stack_Storm)(?=.*(?i)robot)(?=.*(?i)OpenStackSummit).*$"
+
+action:
+    ref: robotarm.grab-card
+    parameters: {}

@@ -1,0 +1,40 @@
+---
+version: '2.0'
+name: robotarm.move-all-mistral
+description: Move all motor positions
+
+workflows:
+    main:
+      type: direct
+      input:
+        - grip_location
+        - wrist_location
+        - hand_location
+        - elbow_location
+        - shoulder_location
+        - pivot_location
+      tasks:
+        location_grip:
+          action: robotarm.grip
+          input:
+            location: <% $.grip_location %>
+        location_wrist:
+          action: robotarm.wrist
+          input:
+            location: <% $.wrist_location %>
+        location_hand:
+          action: robotarm.hand
+          input:
+            location: <% $.hand_location %>
+        location_elbow:
+          action: robotarm.elbow
+          input:
+            location: <% $.elbow_location %>
+        location_shoulder:
+          action: robotarm.shoulder
+          input:
+            location: <% $.shoulder_location %>
+        location_pivot:
+          action: robotarm.pivot
+          input:
+            location: <% $.pivot_location %>

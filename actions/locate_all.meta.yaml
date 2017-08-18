@@ -1,0 +1,11 @@
+---
+name: locate-all
+description: Locate all motor positions
+runner_type: mistral-v2
+enabled: true
+entry_point: workflows/locate_all.yaml
+parameters:
+  workflow:
+    default: robotarm.locate-all.main
+    immutable: true
+    type: string

@@ -1,0 +1,75 @@
+---
+version: '2.0'
+name: robotarm.grab-card-mistral
+description: Grab a card.
+
+workflows:
+    main:
+      type: direct
+      concurrency: 1
+      tasks:
+        safety_first:
+          action: robotarm.move-all
+          input:
+            wrist_location: 0.5
+            shoulder_location: 0.0
+            elbow_location: 0.1633
+            hand_location: 1.0
+            grip_location: 1.0
+            pivot_location: 0.0
+          on-success:
+            - go_to_card
+        go_to_card:
+          action: robotarm.move-all
+          input:
+            wrist_location: 0.5
+            shoulder_location: 0.5
+            elbow_location: 0.1633
+            hand_location: 0.8833
+            grip_location: 1.0
+            pivot_location: 0.0
+          on-success:
+            - grab_card
+        grab_card:
+          action: robotarm.grip
+          input:
+            location: 0.0
+          on-success:
+            - return_to_safety
+        return_to_safety:
+          action: robotarm.move-all
+          input:
+            wrist_location: 0.4983
+            shoulder_location: 0.0
+            elbow_location: 0.1633
+            hand_location: 0.8833
+            grip_location: 0.0
+            pivot_location: 0.0
+          on-success:
+            - display_card
+        display_card:
+          action: robotarm.move-all
+          input:
+            wrist_location: 0.0
+            shoulder_location: 0.31
+            elbow_location: 0.42
+            hand_location: 0.59
+            grip_location: 0.0
+            pivot_location: 1.0
+          on-success:
+            - release_card
+        release_card:
+          action: robotarm.grip
+          input:
+            location: 1.0
+          on-success:
+            - return_home
+        return_home:
+          action: robotarm.move-all
+          input:
+            wrist_location: 0.5
+            shoulder_location: 0.0
+            elbow_location: 0.0
+            hand_location: 1.0
+            grip_location: 0.0
+            pivot_location: 0.0

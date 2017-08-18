@@ -1,0 +1,33 @@
+---
+version: '2.0'
+name: robotarm.enable-all
+description: Enable torque on all motors.
+
+workflows:
+    main:
+      type: direct
+      tasks:
+        enable-grip:
+          action: robotarm.grip-torque
+          input:
+            state: true
+        enable-wrist:
+          action: robotarm.wrist-torque
+          input:
+            state: true
+        enable-hand:
+          action: robotarm.hand-torque
+          input:
+            state: true
+        enable-elbow:
+          action: robotarm.elbow-torque
+          input:
+            state: true
+        enable-shoulder:
+          action: robotarm.shoulder-torque
+          input:
+            state: true
+        enable-pivot:
+          action: robotarm.pivot-torque
+          input:
+            state: true

@@ -1,0 +1,20 @@
+---
+name: "move-all"
+pack: "robotarm"
+description: "Move all motors in robot."
+runner_type: "action-chain"
+entry_point: "chains/move_all.yaml"
+enabled: true
+parameters:
+  grip_location:
+    type: number
+  wrist_location:
+    type: number
+  shoulder_location:
+    type: number
+  elbow_location:
+    type: number
+  hand_location:
+    type: number
+  pivot_location:
+    type: number

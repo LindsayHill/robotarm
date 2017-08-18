@@ -1,0 +1,8 @@
+---
+name: "grab-card"
+pack: "robotarm"
+description: "Grab a card"
+runner_type: "action-chain"
+entry_point: "chains/grab_card.yaml"
+enabled: true
+parameters: {}

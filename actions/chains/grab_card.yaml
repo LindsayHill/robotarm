@@ -1,0 +1,76 @@
+---
+chain:
+  - name: go_to_card
+    ref: robotarm.move-all
+    parameters:
+      wrist_location: 0.015
+      shoulder_location: 0.48
+      elbow_location: 0.1633
+      hand_location: 0.8833
+      grip_location: 0.4
+      pivot_location: 0.0
+    on-success: grab_card
+  - name: grab_card
+    ref: robotarm.grip
+    parameters:
+      location: 0.1
+    on-success: spin_around
+  - name: spin_around
+    ref: robotarm.pivot
+    parameters:
+      location: 1.0
+    on-success: reveal
+  - name: reveal
+    ref: robotarm.elbow
+    parameters:
+      location: 0.62
+    on-success: wave_card_1
+  - name: wave_card_1
+    ref: robotarm.wrist
+    parameters:
+      location: 0.5
+    on-success: wave_card_2
+  - name: wave_card_2
+    ref: robotarm.wrist
+    parameters:
+      location: 0.0
+    on-success: wave_card_3
+  - name: wave_card_3
+    ref: robotarm.wrist
+    parameters:
+      location: 0.5
+    on-success: wave_card_4
+  - name: wave_card_4
+    ref: robotarm.wrist
+    parameters:
+      location: 0.015
+    on-success: show_presenter
+  - name: show_presenter
+    ref: robotarm.pivot
+    parameters:
+      location: 1.0
+    on-success: release_card_position
+  - name: release_card_position
+    ref: robotarm.move-all
+    parameters:
+      wrist_location: 0.015
+      shoulder_location: 0.48
+      elbow_location: 0.1633
+      hand_location: 0.7833
+      grip_location: 0.1
+      pivot_location: 0.0
+    on-success: release_card
+  - name: release_card
+    ref: robotarm.grip
+    parameters:
+      location: 0.5
+    on-success: return_home
+  - name: return_home
+    ref: robotarm.move-all
+    parameters:
+      wrist_location: 0.5
+      shoulder_location: 0.0
+      elbow_location: 0.0
+      hand_location: 1.0
+      grip_location: 0.0
+      pivot_location: 0.0

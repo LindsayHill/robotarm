@@ -1,0 +1,11 @@
+---
+name: enable-all
+description: Enable all motor torque
+runner_type: mistral-v2
+enabled: true
+entry_point: workflows/enable_all.yaml
+parameters:
+  workflow:
+    default: robotarm.enable-all.main
+    immutable: true
+    type: string
